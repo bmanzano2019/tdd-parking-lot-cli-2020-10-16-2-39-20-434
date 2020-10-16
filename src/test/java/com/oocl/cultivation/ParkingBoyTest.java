@@ -113,4 +113,24 @@ class ParkingBoyTest {
         Assertions.assertEquals(TEST_FULL_PARKING_CAPACITY_MESSAGE, thrownException.getMessage());
     }
 
+    @Test
+    void should_park_car_at_second_lot_when_park_car_given_first_parking_lot_is_full() {
+        // given
+        ParkingLot firstParkingLot = new ParkingLot(1);
+        ParkingLot secondParkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(firstParkingLot);
+
+        Car firstCar = new Car();
+        Car secondCar = new Car();
+        ParkingTicket firstTicket = parkingBoy.park(firstCar);
+
+        // when
+        ParkingTicket secondTicket = parkingBoy.park(secondCar);
+        
+        // then
+
+        Assertions.assertSame(firstCar, parkingBoy.fetchCar(firstTicket));
+        Assertions.assertSame(secondCar, parkingBoy.fetchCar(secondTicket));
+    }
+    
 }
