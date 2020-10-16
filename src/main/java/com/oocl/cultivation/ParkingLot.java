@@ -9,7 +9,7 @@ import java.util.Map;
 public class ParkingLot {
     private int parkingCapacity;
     private int currentCarCount = 0;
-    private final static int DEFAULT_PARKING_CAPACITY = 10;
+    private static final int DEFAULT_PARKING_CAPACITY = 10;
     private final Map<ParkingTicket, Car> carTicketMapper = new HashMap<>();
 
     public ParkingLot() {
@@ -20,7 +20,7 @@ public class ParkingLot {
         this.parkingCapacity = parkingCapacity;
     }
 
-    public ParkingTicket addCar(Car car) {
+    ParkingTicket addCar(Car car) {
         if (currentCarCount >= parkingCapacity) {
             return null;
         }
@@ -31,7 +31,7 @@ public class ParkingLot {
         return ticket;
     }
 
-    public Car removeCar(ParkingTicket ticket) {
+    Car removeCar(ParkingTicket ticket) {
         if (ticket == null) {
             throw new NullParkingTicketException();
         }
