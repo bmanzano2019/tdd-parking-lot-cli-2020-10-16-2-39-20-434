@@ -17,11 +17,10 @@ public class ParkingLot {
         this.parkingCapacity = parkingCapacity;
     }
 
-    public boolean isBelowParkingCapacity() {
-        return currentCarCount < parkingCapacity;
-    }
-
     public ParkingTicket addCar(Car car) {
+        if (currentCarCount >= parkingCapacity) {
+            return null;
+        }
         ParkingTicket ticket = new ParkingTicket();
         carTicketMapper.put(ticket, car);
         currentCarCount++;

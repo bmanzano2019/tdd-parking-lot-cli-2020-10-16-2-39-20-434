@@ -8,10 +8,7 @@ public class ParkingBoy {
     }
 
     public ParkingTicket park(Car car) {
-        if (parkingLot.isBelowParkingCapacity()) {
-            return parkingLot.addCar(car);
-        }
-        return null;
+        return parkingLot.addCar(car);
     }
 
     public Car fetchCar(ParkingTicket ticket) {
