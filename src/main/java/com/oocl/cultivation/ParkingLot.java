@@ -1,5 +1,6 @@
 package com.oocl.cultivation;
 
+import com.oocl.cultivation.exception.FullParkingCapacityException;
 import com.oocl.cultivation.exception.NullParkingTicketException;
 import com.oocl.cultivation.exception.UnrecognizedParkingTicketException;
 
@@ -22,7 +23,7 @@ public class ParkingLot {
 
     ParkingTicket addCar(Car car) {
         if (currentCarCount >= parkingCapacity) {
-            return null;
+            throw new FullParkingCapacityException();
         }
         ParkingTicket ticket = new ParkingTicket();
         carTicketMapper.put(ticket, car);
