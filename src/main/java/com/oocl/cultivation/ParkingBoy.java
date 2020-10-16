@@ -18,6 +18,6 @@ public class ParkingBoy {
     }
 
     public Car fetchCar(ParkingTicket ticket) {
-        return carTicketMapper.get(ticket);
+        return carTicketMapper.remove(ticket);
     }
 }
