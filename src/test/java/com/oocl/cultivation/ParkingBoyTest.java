@@ -1,5 +1,6 @@
 package com.oocl.cultivation;
 
+import com.oocl.cultivation.exception.FullParkingCapacityException;
 import com.oocl.cultivation.exception.NullParkingTicketException;
 import com.oocl.cultivation.exception.UnrecognizedParkingTicketException;
 import org.junit.jupiter.api.Assertions;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.Test;
 class ParkingBoyTest {
     private static final String TEST_UNRECOGNIZED_PARKING_TICKET_MESSAGE = "Unrecognized Parking Ticket.";
     private static final String TEST_NULL_PARKING_TICKET_MESSAGE = "Please provide your parking ticket.";
+    private static final String TEST_FULL_PARKING_CAPACITY_MESSAGE = "Not enough position.";
 
     @Test
     void should_return_parking_ticket_when_parking_given_car_to_parking_boy() {
@@ -105,7 +107,10 @@ class ParkingBoyTest {
 
         // when
         // then
-        Assertions.assertNull(parkingBoy.park(new Car()));
+        Exception thrownException = Assertions
+                .assertThrows(FullParkingCapacityException.class,
+                        () -> parkingBoy.park(new Car()));
+        Assertions.assertEquals(TEST_FULL_PARKING_CAPACITY_MESSAGE, thrownException.getMessage());
     }
 
 }
