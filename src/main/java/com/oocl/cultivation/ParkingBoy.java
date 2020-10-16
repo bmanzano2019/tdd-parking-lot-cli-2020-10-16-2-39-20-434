@@ -7,4 +7,8 @@ public class ParkingBoy {
     public ParkingTicket park(Car car) {
         return new ParkingTicket();
     }
+
+    public Car fetchCar(ParkingTicket ticket) {
+        return new Car();
+    }
 }
