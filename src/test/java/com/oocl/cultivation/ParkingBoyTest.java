@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class ParkingBoyTest {
-    private static final String TEST_UNRECOGNIZED_PARKING_TICKET_MESSAGE = "Unrecognized Parking Ticket";
+    private static final String TEST_UNRECOGNIZED_PARKING_TICKET_MESSAGE = "Unrecognized Parking Ticket.";
 
     @Test
     void should_return_parking_ticket_when_parking_given_car_to_parking_boy() {
@@ -60,7 +60,7 @@ class ParkingBoyTest {
         Assertions.assertNotSame(correctTicket, wrongTicket);
         Exception thrownException = Assertions
                 .assertThrows(UnrecognizedParkingTicketException.class,
-                        () -> { parkingBoy.fetchCar(wrongTicket); });
+                        () -> parkingBoy.fetchCar(wrongTicket));
         Assertions.assertEquals(TEST_UNRECOGNIZED_PARKING_TICKET_MESSAGE, thrownException.getMessage());
     }
     
@@ -88,7 +88,7 @@ class ParkingBoyTest {
         // then
         Exception thrownException = Assertions
                 .assertThrows(UnrecognizedParkingTicketException.class,
-                        () -> { parkingBoy.fetchCar(ticket); });
+                        () -> parkingBoy.fetchCar(ticket));
         Assertions.assertEquals(TEST_UNRECOGNIZED_PARKING_TICKET_MESSAGE, thrownException.getMessage());
     }
     
