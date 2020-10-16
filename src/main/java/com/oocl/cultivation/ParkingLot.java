@@ -1,5 +1,6 @@
 package com.oocl.cultivation;
 
+import com.oocl.cultivation.exception.NullParkingTicketException;
 import com.oocl.cultivation.exception.UnrecognizedParkingTicketException;
 
 import java.util.HashMap;
@@ -31,6 +32,10 @@ public class ParkingLot {
     }
 
     public Car removeCar(ParkingTicket ticket) {
+        if (ticket == null) {
+            throw new NullParkingTicketException();
+        }
+
         Car returnCar = carTicketMapper.remove(ticket);
 
         if (returnCar == null) {
