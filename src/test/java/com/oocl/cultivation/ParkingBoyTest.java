@@ -60,7 +60,7 @@ class ParkingBoyTest {
     }
     
     @Test
-    void should_return_no_car_when_fetch_car_given_null_ticket_to_parking_boy() {
+    void should_return_no_car_when_fetch_car_given_no_ticket_to_parking_boy() {
         // given
         Car car = new Car();
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
@@ -69,6 +69,19 @@ class ParkingBoyTest {
         // when
         // then
         Assertions.assertNull(parkingBoy.fetchCar(null));
+    }
+    
+    @Test
+    void should_return_no_car_when_fetch_car_given_already_used_ticket_to_parking_boy() {
+        // given
+        Car car = new Car();
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
+        ParkingTicket ticket = parkingBoy.park(car);
+        parkingBoy.fetchCar(ticket);
+
+        // when
+        // then
+        Assertions.assertNull(parkingBoy.fetchCar(ticket));
     }
 
 }
