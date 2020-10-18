@@ -161,5 +161,48 @@ class SuperSmartParkingBoyTest {
         Assertions.assertSame(secondCar, superParkingBoy.fetchCar(secondTicket));
     }
 
+    @Test
+    void should_park_three_cars_in_order_of_lots_first_second_third_when_park_three_cars_given_four_parking_lots_with_different_max_capacity() {
+        // given
+        ParkingLot firstParkingLot = new ParkingLot(1);
+        ParkingLot secondParkingLot = new ParkingLot(2);
+        ParkingLot thirdParkingLot = new ParkingLot(3);
+        ParkingLot fourthParkingLot = new ParkingLot(4);
+        List<ParkingLot> groupParkingLots = new ArrayList<>(0);
+        groupParkingLots.add(firstParkingLot);
+        groupParkingLots.add(secondParkingLot);
+        groupParkingLots.add(thirdParkingLot);
+        groupParkingLots.add(fourthParkingLot);
+        SuperSmartParkingBoy superParkingBoy = new SuperSmartParkingBoy(groupParkingLots);
+
+        Car firstCar = new Car();
+        Car secondCar = new Car();
+        Car thirdCar = new Car();
+
+        // when
+        ParkingTicket firstTicket = superParkingBoy.park(firstCar);
+        ParkingTicket secondTicket = superParkingBoy.park(secondCar);
+        ParkingTicket thirdTicket = superParkingBoy.park(thirdCar);
+
+        // then
+        Assertions.assertTrue(firstParkingLot.isFullCapacity());
+
+        Assertions.assertFalse(secondParkingLot.isFullCapacity());
+        Assertions.assertEquals(1, secondParkingLot.getCurrentParkingCapacity());
+
+        Assertions.assertFalse(thirdParkingLot.isFullCapacity());
+        Assertions.assertEquals(2, thirdParkingLot.getCurrentParkingCapacity());
+
+        Assertions.assertFalse(fourthParkingLot.isFullCapacity());
+        Assertions.assertEquals(4, fourthParkingLot.getCurrentParkingCapacity());
+
+        Assertions.assertTrue(firstParkingLot.checkIfCarInParkingLotByTicket(firstTicket));
+        Assertions.assertTrue(secondParkingLot.checkIfCarInParkingLotByTicket(secondTicket));
+        Assertions.assertTrue(thirdParkingLot.checkIfCarInParkingLotByTicket(thirdTicket));
+
+        Assertions.assertSame(thirdCar, superParkingBoy.fetchCar(thirdTicket));
+        Assertions.assertSame(firstCar, superParkingBoy.fetchCar(firstTicket));
+        Assertions.assertSame(secondCar, superParkingBoy.fetchCar(secondTicket));
+    }
 
 }
