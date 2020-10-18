@@ -306,4 +306,22 @@ class ParkingLotServiceManagerTest {
         Assertions.assertEquals(TEST_UNLISTED_PARKING_BOY_MESSAGE, thrownException.getMessage());
         Assertions.assertEquals(TEST_DEFAULT_PARKING_CAPACITY, parkingLot.getCurrentParkingCapacity());
     }
+
+    @Test
+    void should_return_no_car_when_fetch_car_given_correct_parking_ticket_and_parking_manager_and_parking_boy_that_is_not_in_list() {
+        // given
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingLotServiceManager parkingManager = new ParkingLotServiceManager(new ParkingLot());
+
+        ParkingTicket ticket = parkingBoy.park(new Car());
+
+        // when
+        // then
+        Exception thrownException = Assertions
+                .assertThrows(UnlistedParkingBoyException.class,
+                        () -> parkingManager.fetchCar(parkingBoy, ticket));
+        Assertions.assertEquals(TEST_UNLISTED_PARKING_BOY_MESSAGE, thrownException.getMessage());
+        Assertions.assertTrue(parkingLot.checkIfCarInParkingLotByTicket(ticket));
+    }
 }
