@@ -15,6 +15,7 @@ public class ParkingLotServiceManager extends ParkingBoy {
 
     public ParkingLotServiceManager(List<ParkingLot> groupParkingLots) {
         super(groupParkingLots);
+        parkerList = new ArrayList<>();
     }
 
     public void addBoyToParkerList(ParkingBoy parkingBoy) {
