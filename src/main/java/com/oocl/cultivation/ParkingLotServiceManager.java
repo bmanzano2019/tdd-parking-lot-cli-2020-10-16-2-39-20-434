@@ -24,6 +24,6 @@ public class ParkingLotServiceManager extends ParkingBoy {
     }
 
     public Car fetchCar(ParkingBoy parkingBoy, ParkingTicket ticket) {
-        return new Car();
+        return parkingBoy.fetchCar(ticket);
     }
 }
