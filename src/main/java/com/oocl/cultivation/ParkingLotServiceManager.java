@@ -1,10 +1,14 @@
 package com.oocl.cultivation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ParkingLotServiceManager extends ParkingBoy {
+    private List<ParkingBoy> parkerList;
+
     public ParkingLotServiceManager(ParkingLot parkingLot) {
         super(parkingLot);
+        parkerList = new ArrayList<>();
     }
 
     public ParkingLotServiceManager(List<ParkingLot> groupParkingLots) {
@@ -12,10 +16,10 @@ public class ParkingLotServiceManager extends ParkingBoy {
     }
 
     public ParkingTicket park(ParkingBoy parkingBoy, Car car) {
-        return new ParkingTicket();
+        return parkingBoy.park(car);
     }
 
     public void addBoyToParkerList(ParkingBoy parkingBoy) {
-        // to be implemented
+        parkerList.add(parkingBoy);
     }
 }
