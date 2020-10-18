@@ -19,14 +19,14 @@ class SmartParkingBoyTest {
         List<ParkingLot> groupParkingLots = new ArrayList<>(0);
         groupParkingLots.add(firstParkingLot);
         groupParkingLots.add(secondParkingLot);
-        ParkingBoy parkingBoy = new ParkingBoy(groupParkingLots);
-        Car firstCar = new Car();
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(groupParkingLots);
+        Car car = new Car();
 
         // when
-        ParkingTicket firstTicket = parkingBoy.park(firstCar);
+        ParkingTicket ticket = smartParkingBoy.park(car);
 
         // then
-        Assertions.assertTrue(secondParkingLot.checkIfCarInParkingLotByTicket(firstTicket));
-        Assertions.assertSame(firstCar, parkingBoy.fetchCar(firstTicket));
+        Assertions.assertTrue(secondParkingLot.checkIfCarInParkingLotByTicket(ticket));
+        Assertions.assertSame(car, smartParkingBoy.fetchCar(ticket));
     }
 }
