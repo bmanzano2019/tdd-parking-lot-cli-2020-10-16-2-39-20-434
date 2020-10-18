@@ -2,6 +2,7 @@ package com.oocl.cultivation;
 
 import com.oocl.cultivation.exception.FullParkingCapacityException;
 import com.oocl.cultivation.exception.NullParkingTicketException;
+import com.oocl.cultivation.exception.UnlistedParkingBoyException;
 import com.oocl.cultivation.exception.UnrecognizedParkingTicketException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,7 @@ class ParkingLotServiceManagerTest {
     private static final String TEST_UNRECOGNIZED_PARKING_TICKET_MESSAGE = "Unrecognized Parking Ticket.";
     private static final String TEST_NULL_PARKING_TICKET_MESSAGE = "Please provide your parking ticket.";
     private static final String TEST_FULL_PARKING_CAPACITY_MESSAGE = "Not enough position.";
+    private static final String TEST_UNLISTED_PARKING_BOY_MESSAGE = "Parking Boy Not in list.";
     private static final int TEST_DEFAULT_PARKING_CAPACITY = 10;
 
     @Test
@@ -299,9 +301,9 @@ class ParkingLotServiceManagerTest {
         // when
         // then
         Exception thrownException = Assertions
-                .assertThrows(UnrecognizedParkingTicketException.class,
+                .assertThrows(UnlistedParkingBoyException.class,
                         () -> parkingManager.park(parkingBoy, new Car()));
-        Assertions.assertEquals(TEST_UNRECOGNIZED_PARKING_TICKET_MESSAGE, thrownException.getMessage());
+        Assertions.assertEquals(TEST_UNLISTED_PARKING_BOY_MESSAGE, thrownException.getMessage());
         Assertions.assertEquals(TEST_DEFAULT_PARKING_CAPACITY, parkingLot.getCurrentParkingCapacity());
     }
 }
