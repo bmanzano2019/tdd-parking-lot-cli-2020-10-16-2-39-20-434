@@ -29,6 +29,9 @@ public class ParkingLotServiceManager extends ParkingBoy {
     }
 
     public Car fetchCar(ParkingBoy parkingBoy, ParkingTicket ticket) {
-        return parkingBoy.fetchCar(ticket);
+        if (parkerList.contains(parkingBoy)) {
+            return parkingBoy.fetchCar(ticket);
+        }
+        throw new UnlistedParkingBoyException();
     }
 }
