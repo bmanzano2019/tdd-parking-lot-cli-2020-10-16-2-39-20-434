@@ -15,11 +15,15 @@ public class ParkingLotServiceManager extends ParkingBoy {
         super(groupParkingLots);
     }
 
+    public void addBoyToParkerList(ParkingBoy parkingBoy) {
+        parkerList.add(parkingBoy);
+    }
+
     public ParkingTicket park(ParkingBoy parkingBoy, Car car) {
         return parkingBoy.park(car);
     }
 
-    public void addBoyToParkerList(ParkingBoy parkingBoy) {
-        parkerList.add(parkingBoy);
+    public Car fetchCar(ParkingBoy parkingBoy, ParkingTicket ticket) {
+        return new Car();
     }
 }
