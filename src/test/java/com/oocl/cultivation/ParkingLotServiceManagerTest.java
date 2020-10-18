@@ -13,6 +13,7 @@ class ParkingLotServiceManagerTest {
     private static final String TEST_UNRECOGNIZED_PARKING_TICKET_MESSAGE = "Unrecognized Parking Ticket.";
     private static final String TEST_NULL_PARKING_TICKET_MESSAGE = "Please provide your parking ticket.";
     private static final String TEST_FULL_PARKING_CAPACITY_MESSAGE = "Not enough position.";
+    private static final int TEST_DEFAULT_PARKING_CAPACITY = 10;
 
     @Test
     void should_return_parking_ticket_when_parking_given_car_to_parking_manager() {
@@ -286,5 +287,21 @@ class ParkingLotServiceManagerTest {
                 .assertThrows(UnrecognizedParkingTicketException.class,
                         () -> parkingManager.fetchCar(parkingBoy, ticket));
         Assertions.assertEquals(TEST_UNRECOGNIZED_PARKING_TICKET_MESSAGE, thrownException.getMessage());
+    }
+
+    @Test
+    void should_park_car_fail_and_return_no_ticket_when_park_car_given_parking_manager_and_parking_boy_that_is_not_in_list() {
+        // given
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingLotServiceManager parkingManager = new ParkingLotServiceManager(new ParkingLot());
+
+        // when
+        // then
+        Exception thrownException = Assertions
+                .assertThrows(UnrecognizedParkingTicketException.class,
+                        () -> parkingManager.park(parkingBoy, new Car()));
+        Assertions.assertEquals(TEST_UNRECOGNIZED_PARKING_TICKET_MESSAGE, thrownException.getMessage());
+        Assertions.assertEquals(TEST_DEFAULT_PARKING_CAPACITY, parkingLot.getCurrentParkingCapacity());
     }
 }
