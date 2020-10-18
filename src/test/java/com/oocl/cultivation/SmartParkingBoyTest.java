@@ -175,10 +175,10 @@ class SmartParkingBoyTest {
         Car firstCar = new Car();
         Car secondCar = new Car();
         Car thirdCar = new Car();
-        ParkingTicket firstTicket = smartParkingBoy.park(firstCar);
-        ParkingTicket secondTicket = smartParkingBoy.park(secondCar);
 
         // when
+        ParkingTicket firstTicket = smartParkingBoy.park(firstCar);
+        ParkingTicket secondTicket = smartParkingBoy.park(secondCar);
         ParkingTicket thirdTicket = smartParkingBoy.park(thirdCar);
 
         // then
