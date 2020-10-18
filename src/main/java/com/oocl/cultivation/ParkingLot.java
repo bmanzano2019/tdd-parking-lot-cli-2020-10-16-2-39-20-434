@@ -21,6 +21,10 @@ public class ParkingLot {
         this.parkingCapacity = parkingCapacity;
     }
 
+    public boolean checkIfCarInParkingLotByTicket(ParkingTicket ticket) {
+        return carTicketMapper.containsKey(ticket);
+    }
+
     ParkingTicket addCar(Car car) {
         if (currentCarCount >= parkingCapacity) {
             throw new FullParkingCapacityException();

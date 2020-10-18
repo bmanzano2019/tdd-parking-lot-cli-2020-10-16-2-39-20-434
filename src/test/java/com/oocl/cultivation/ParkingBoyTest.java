@@ -6,6 +6,9 @@ import com.oocl.cultivation.exception.UnrecognizedParkingTicketException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 class ParkingBoyTest {
     private static final String TEST_UNRECOGNIZED_PARKING_TICKET_MESSAGE = "Unrecognized Parking Ticket.";
     private static final String TEST_NULL_PARKING_TICKET_MESSAGE = "Please provide your parking ticket.";
@@ -118,7 +121,10 @@ class ParkingBoyTest {
         // given
         ParkingLot firstParkingLot = new ParkingLot(1);
         ParkingLot secondParkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(firstParkingLot);
+        List<ParkingLot> groupParkingLots = new ArrayList<>(0);
+        groupParkingLots.add(firstParkingLot);
+        groupParkingLots.add(secondParkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy(groupParkingLots);
 
         Car firstCar = new Car();
         Car secondCar = new Car();
@@ -128,7 +134,37 @@ class ParkingBoyTest {
         ParkingTicket secondTicket = parkingBoy.park(secondCar);
         
         // then
+        Assertions.assertTrue(secondParkingLot.checkIfCarInParkingLotByTicket(secondTicket));
+        Assertions.assertSame(firstCar, parkingBoy.fetchCar(firstTicket));
+        Assertions.assertSame(secondCar, parkingBoy.fetchCar(secondTicket));
+    }
 
+    @Test
+    void should_park_car_at_third_lot_when_park_car_given_four_parking_lots_and_first_second_parking_lots_are_full() {
+        // given
+        ParkingLot firstParkingLot = new ParkingLot(1);
+        ParkingLot secondParkingLot = new ParkingLot(1);
+        ParkingLot thirdParkingLot = new ParkingLot();
+        ParkingLot fourthParkingLot = new ParkingLot();
+        List<ParkingLot> groupParkingLots = new ArrayList<>(0);
+        groupParkingLots.add(firstParkingLot);
+        groupParkingLots.add(secondParkingLot);
+        groupParkingLots.add(thirdParkingLot);
+        groupParkingLots.add(fourthParkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy(groupParkingLots);
+
+        Car firstCar = new Car();
+        Car secondCar = new Car();
+        Car thirdCar = new Car();
+        ParkingTicket firstTicket = parkingBoy.park(firstCar);
+        ParkingTicket secondTicket = parkingBoy.park(secondCar);
+
+        // when
+        ParkingTicket thirdTicket = parkingBoy.park(thirdCar);
+
+        // then
+        Assertions.assertTrue(thirdParkingLot.checkIfCarInParkingLotByTicket(thirdTicket));
+        Assertions.assertSame(thirdCar, parkingBoy.fetchCar(thirdTicket));
         Assertions.assertSame(firstCar, parkingBoy.fetchCar(firstTicket));
         Assertions.assertSame(secondCar, parkingBoy.fetchCar(secondTicket));
     }
