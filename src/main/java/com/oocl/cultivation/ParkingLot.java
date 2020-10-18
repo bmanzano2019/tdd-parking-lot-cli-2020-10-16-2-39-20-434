@@ -44,4 +44,8 @@ public class ParkingLot {
     int getCurrentParkingCapacity() {
         return parkingCapacity - currentCarCount;
     }
+
+    int getMaxParkingCapacity() {
+        return parkingCapacity;
+    }
 }
