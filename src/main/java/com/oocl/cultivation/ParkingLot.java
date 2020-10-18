@@ -40,4 +40,8 @@ public class ParkingLot {
         }
         return returnCar;
     }
+
+    int getCurrentParkingCapacity() {
+        return parkingCapacity - currentCarCount;
+    }
 }

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParkingBoy {
-    private List<ParkingLot> groupParkingLots;
+    List<ParkingLot> groupParkingLots;
 
     public ParkingBoy(ParkingLot parkingLot) {
         groupParkingLots = new ArrayList<>();
