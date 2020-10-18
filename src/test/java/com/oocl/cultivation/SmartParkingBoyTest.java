@@ -159,7 +159,7 @@ class SmartParkingBoyTest {
     }
 
     @Test
-    void should_park_car_at_third_lot_when_park_car_given_four_parking_lots_and_first_second_parking_lots_are_full() {
+    void should_park_car_at_third_fourth_lots_when_park_three_cars_given_four_parking_lots_and_first_second_parking_lots_are_small() {
         // given
         ParkingLot firstParkingLot = new ParkingLot(1);
         ParkingLot secondParkingLot = new ParkingLot(1);
@@ -182,7 +182,16 @@ class SmartParkingBoyTest {
         ParkingTicket thirdTicket = smartParkingBoy.park(thirdCar);
 
         // then
+        Assertions.assertFalse(firstParkingLot.isFullCapacity());
+        Assertions.assertEquals(1, firstParkingLot.getCurrentParkingCapacity());
+
+        Assertions.assertFalse(secondParkingLot.isFullCapacity());
+        Assertions.assertEquals(1, secondParkingLot.getCurrentParkingCapacity());
+
+        Assertions.assertTrue(thirdParkingLot.checkIfCarInParkingLotByTicket(firstTicket));
+        Assertions.assertTrue(fourthParkingLot.checkIfCarInParkingLotByTicket(secondTicket));
         Assertions.assertTrue(thirdParkingLot.checkIfCarInParkingLotByTicket(thirdTicket));
+
         Assertions.assertSame(thirdCar, smartParkingBoy.fetchCar(thirdTicket));
         Assertions.assertSame(firstCar, smartParkingBoy.fetchCar(firstTicket));
         Assertions.assertSame(secondCar, smartParkingBoy.fetchCar(secondTicket));
