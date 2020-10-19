@@ -2,7 +2,9 @@ package com.oocl.cultivation;
 
 import com.oocl.cultivation.exception.FullParkingCapacityException;
 import com.oocl.cultivation.exception.NullParkingTicketException;
+import com.oocl.cultivation.exception.ParkingException;
 import com.oocl.cultivation.exception.UnrecognizedParkingTicketException;
+import com.oocl.cultivation.utils.ParkingExceptionMessage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,7 +32,7 @@ public class ParkingBoy {
             }
         }
 
-        throw new FullParkingCapacityException();
+        throw new ParkingException(ParkingExceptionMessage.FULL_PARKING_CAPACITY_MESSAGE);
     }
 
     // TODO: refactor the parkingLot searching to another method

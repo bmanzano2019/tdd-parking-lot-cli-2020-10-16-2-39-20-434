@@ -1,9 +1,6 @@
 package com.oocl.cultivation;
 
-import com.oocl.cultivation.exception.FullParkingCapacityException;
-import com.oocl.cultivation.exception.NullParkingTicketException;
-import com.oocl.cultivation.exception.UnlistedParkingBoyException;
-import com.oocl.cultivation.exception.UnrecognizedParkingTicketException;
+import com.oocl.cultivation.exception.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -114,7 +111,7 @@ class ParkingLotServiceManagerTest {
         // when
         // then
         Exception thrownException = Assertions
-                .assertThrows(FullParkingCapacityException.class,
+                .assertThrows(ParkingException.class,
                         () -> parkingManager.park(new Car()));
         Assertions.assertEquals(TEST_FULL_PARKING_CAPACITY_MESSAGE, thrownException.getMessage());
     }
@@ -232,7 +229,7 @@ class ParkingLotServiceManagerTest {
         // when
         // then
         Exception thrownException = Assertions
-                .assertThrows(FullParkingCapacityException.class,
+                .assertThrows(ParkingException.class,
                         () -> parkingManager.park(parkingBoy, new Car()));
         Assertions.assertEquals(TEST_FULL_PARKING_CAPACITY_MESSAGE, thrownException.getMessage());
     }
