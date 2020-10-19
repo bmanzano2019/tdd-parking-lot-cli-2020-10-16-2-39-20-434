@@ -3,6 +3,7 @@ package com.oocl.cultivation;
 import com.oocl.cultivation.exception.ParkingException;
 import com.oocl.cultivation.utils.ParkingExceptionMessage;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class SuperSmartParkingBoy extends ParkingBoy {
@@ -14,22 +15,11 @@ public class SuperSmartParkingBoy extends ParkingBoy {
         super(groupParkingLots);
     }
 
-    // TODO: consider moving the computing code to a function inside ParkingLot to be lambda-able
     @Override
-    public ParkingTicket park(Car car) {
-        ParkingLot targetParkingLot = null;
-        float largestParkingRatio = 0;
-        for (ParkingLot parkingLot : groupParkingLots) {
-            float parkingRatio = parkingLot.getCurrentParkingRatio();
-            if (parkingRatio > largestParkingRatio) {
-                targetParkingLot = parkingLot;
-                largestParkingRatio = parkingRatio;
-            }
-        }
-        if (targetParkingLot != null) {
-            return targetParkingLot.addCar(car);
-        }
-
-        throw new ParkingException(ParkingExceptionMessage.FULL_PARKING_CAPACITY_MESSAGE);
+    ParkingLot findAvailableParkingLot() {
+        return groupParkingLots.stream()
+                .filter(parkingLot -> !parkingLot.isFullCapacity())
+                .max(Comparator.comparing(ParkingLot::getCurrentParkingRatio))
+                .orElse(null);
     }
 }
