@@ -1,6 +1,7 @@
 package com.oocl.cultivation;
 
-import com.oocl.cultivation.exception.FullParkingCapacityException;
+import com.oocl.cultivation.exception.ParkingException;
+import com.oocl.cultivation.utils.ParkingExceptionMessage;
 
 import java.util.List;
 
@@ -15,7 +16,6 @@ public class SmartParkingBoy extends ParkingBoy {
 
     @Override
     public ParkingTicket park(Car car) {
-        // find parking lot with largest parking capacity
         ParkingLot targetParkingLot = null;
         int largestParkingCapacity = 0;
         for (ParkingLot parkingLot : groupParkingLots) {
@@ -29,7 +29,6 @@ public class SmartParkingBoy extends ParkingBoy {
             return targetParkingLot.addCar(car);
         }
 
-        // all parking lots handled are full
-        throw new FullParkingCapacityException();
+        throw new ParkingException(ParkingExceptionMessage.FULL_PARKING_CAPACITY_MESSAGE);
     }
 }

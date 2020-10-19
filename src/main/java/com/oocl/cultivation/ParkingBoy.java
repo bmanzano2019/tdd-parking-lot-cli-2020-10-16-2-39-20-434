@@ -1,7 +1,6 @@
 package com.oocl.cultivation;
 
 import com.oocl.cultivation.exception.ParkingException;
-import com.oocl.cultivation.exception.UnrecognizedParkingTicketException;
 import com.oocl.cultivation.utils.ParkingExceptionMessage;
 
 import java.util.Arrays;
@@ -49,6 +48,6 @@ public class ParkingBoy {
             }
         }
 
-        throw new UnrecognizedParkingTicketException();
+        throw new ParkingException(ParkingExceptionMessage.UNRECOGNIZED_PARKING_TICKET_MESSAGE);
     }
 }

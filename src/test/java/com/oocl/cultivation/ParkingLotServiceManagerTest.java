@@ -1,7 +1,6 @@
 package com.oocl.cultivation;
 
 import com.oocl.cultivation.exception.ParkingException;
-import com.oocl.cultivation.exception.UnrecognizedParkingTicketException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -67,7 +66,7 @@ class ParkingLotServiceManagerTest {
         // then
         Assertions.assertNotSame(correctTicket, wrongTicket);
         Exception thrownException = Assertions
-                .assertThrows(UnrecognizedParkingTicketException.class,
+                .assertThrows(ParkingException.class,
                         () -> parkingManager.fetchCar(wrongTicket));
         Assertions.assertEquals(TEST_UNRECOGNIZED_PARKING_TICKET_MESSAGE, thrownException.getMessage());
     }
@@ -98,7 +97,7 @@ class ParkingLotServiceManagerTest {
         // when
         // then
         Exception thrownException = Assertions
-                .assertThrows(UnrecognizedParkingTicketException.class,
+                .assertThrows(ParkingException.class,
                         () -> parkingManager.fetchCar(ticket));
         Assertions.assertEquals(TEST_UNRECOGNIZED_PARKING_TICKET_MESSAGE, thrownException.getMessage());
     }
@@ -266,7 +265,7 @@ class ParkingLotServiceManagerTest {
         // then
         Assertions.assertNotSame(correctTicket, wrongTicket);
         Exception thrownException = Assertions
-                .assertThrows(UnrecognizedParkingTicketException.class,
+                .assertThrows(ParkingException.class,
                         () -> parkingManager.fetchCar(parkingBoy, wrongTicket));
         Assertions.assertEquals(TEST_UNRECOGNIZED_PARKING_TICKET_MESSAGE, thrownException.getMessage());
     }
@@ -284,7 +283,7 @@ class ParkingLotServiceManagerTest {
         // when
         // then
         Exception thrownException = Assertions
-                .assertThrows(UnrecognizedParkingTicketException.class,
+                .assertThrows(ParkingException.class,
                         () -> parkingManager.fetchCar(parkingBoy, ticket));
         Assertions.assertEquals(TEST_UNRECOGNIZED_PARKING_TICKET_MESSAGE, thrownException.getMessage());
     }

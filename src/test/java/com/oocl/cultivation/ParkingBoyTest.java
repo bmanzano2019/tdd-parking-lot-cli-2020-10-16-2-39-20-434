@@ -1,7 +1,6 @@
 package com.oocl.cultivation;
 
 import com.oocl.cultivation.exception.ParkingException;
-import com.oocl.cultivation.exception.UnrecognizedParkingTicketException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -65,7 +64,7 @@ class ParkingBoyTest {
         // then
         Assertions.assertNotSame(correctTicket, wrongTicket);
         Exception thrownException = Assertions
-                .assertThrows(UnrecognizedParkingTicketException.class,
+                .assertThrows(ParkingException.class,
                         () -> parkingBoy.fetchCar(wrongTicket));
         Assertions.assertEquals(TEST_UNRECOGNIZED_PARKING_TICKET_MESSAGE, thrownException.getMessage());
     }
@@ -96,7 +95,7 @@ class ParkingBoyTest {
         // when
         // then
         Exception thrownException = Assertions
-                .assertThrows(UnrecognizedParkingTicketException.class,
+                .assertThrows(ParkingException.class,
                         () -> parkingBoy.fetchCar(ticket));
         Assertions.assertEquals(TEST_UNRECOGNIZED_PARKING_TICKET_MESSAGE, thrownException.getMessage());
     }

@@ -1,6 +1,7 @@
 package com.oocl.cultivation;
 
-import com.oocl.cultivation.exception.FullParkingCapacityException;
+import com.oocl.cultivation.exception.ParkingException;
+import com.oocl.cultivation.utils.ParkingExceptionMessage;
 
 import java.util.List;
 
@@ -13,9 +14,9 @@ public class SuperSmartParkingBoy extends ParkingBoy {
         super(groupParkingLots);
     }
 
+    // TODO: consider moving the computing code to a function inside ParkingLot to be lambda-able
     @Override
     public ParkingTicket park(Car car) {
-        // find parking lot with largest parking ratio
         ParkingLot targetParkingLot = null;
         float largestParkingRatio = 0;
         for (ParkingLot parkingLot : groupParkingLots) {
@@ -29,7 +30,6 @@ public class SuperSmartParkingBoy extends ParkingBoy {
             return targetParkingLot.addCar(car);
         }
 
-        // all parking lots handled are full
-        throw new FullParkingCapacityException();
+        throw new ParkingException(ParkingExceptionMessage.FULL_PARKING_CAPACITY_MESSAGE);
     }
 }
