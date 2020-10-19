@@ -5,23 +5,26 @@ import com.oocl.cultivation.exception.NullParkingTicketException;
 import com.oocl.cultivation.exception.UnrecognizedParkingTicketException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ParkingBoy {
     List<ParkingLot> groupParkingLots;
 
     public ParkingBoy(ParkingLot parkingLot) {
-        groupParkingLots = new ArrayList<>();
-        groupParkingLots.add(parkingLot);
+        groupParkingLots = Arrays.asList(parkingLot);
     }
 
     public ParkingBoy(List<ParkingLot> groupParkingLots) {
-        // clone this if necessary since lists are passed by reference
+        // TODO clone this if necessary since lists are passed by reference
         this.groupParkingLots = groupParkingLots;
     }
 
+    // TODO: refactor the parkingLot searching to another method
+    // TODO: and then have the subclasses override this function instead
+    // TODO: delete comment
     public ParkingTicket park(Car car) {
-        // try to refactor to lambda function later
+        // TODO try to refactor to lambda function later
         for (ParkingLot parkingLot : groupParkingLots) {
             if (!parkingLot.isFullCapacity()) {
                 return parkingLot.addCar(car);
@@ -32,8 +35,10 @@ public class ParkingBoy {
         throw new FullParkingCapacityException();
     }
 
+    // TODO: refactor the parkingLot searching to another method
+    // TODO: and then have the subclasses override this function instead
     public Car fetchCar(ParkingTicket ticket) {
-        // try to refactor to lambda function later
+        // TODO try to refactor to lambda function later
         Car fetchedCar;
 
         if (ticket == null) {
