@@ -16,7 +16,6 @@ public class ParkingBoy {
     }
 
     public ParkingBoy(List<ParkingLot> groupParkingLots) {
-        // TODO clone this if necessary since lists are passed by reference
         this.groupParkingLots = groupParkingLots;
     }
 
@@ -31,7 +30,6 @@ public class ParkingBoy {
             }
         }
 
-        // all parking lots handled are full
         throw new FullParkingCapacityException();
     }
 
@@ -52,7 +50,6 @@ public class ParkingBoy {
             }
         }
 
-        // no car is fetched in any of the parking lots
         throw new UnrecognizedParkingTicketException();
     }
 }
