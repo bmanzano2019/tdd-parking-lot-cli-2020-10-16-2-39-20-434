@@ -35,14 +35,12 @@ public class ParkingBoy {
     // TODO: and then have the subclasses override this function instead
     public Car fetchCar(ParkingTicket ticket) {
         // TODO try to refactor to lambda function later
-        Car fetchedCar;
-
         if (ticket == null) {
             throw new ParkingException(ParkingExceptionMessage.NULL_PARKING_TICKET_MESSAGE);
         }
 
         for (ParkingLot parkingLot : groupParkingLots) {
-            fetchedCar = parkingLot.removeCar(ticket);
+            Car fetchedCar = parkingLot.removeCar(ticket);
             if (fetchedCar != null) {
                 return fetchedCar;
             }
@@ -50,4 +48,6 @@ public class ParkingBoy {
 
         throw new ParkingException(ParkingExceptionMessage.UNRECOGNIZED_PARKING_TICKET_MESSAGE);
     }
+
+
 }
