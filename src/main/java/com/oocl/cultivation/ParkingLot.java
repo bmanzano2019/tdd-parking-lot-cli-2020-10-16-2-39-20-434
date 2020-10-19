@@ -5,7 +5,6 @@ import java.util.Map;
 
 public class ParkingLot {
     private int parkingCapacity;
-    private int currentCarCount = 0;
     private static final int DEFAULT_PARKING_CAPACITY = 10;
     private final Map<ParkingTicket, Car> carTicketMapper = new HashMap<>();
 
@@ -22,27 +21,22 @@ public class ParkingLot {
     }
 
     public boolean isFullCapacity() {
-        return currentCarCount >= parkingCapacity;
+        return carTicketMapper.size() >= parkingCapacity;
     }
 
     ParkingTicket addCar(Car car) {
         ParkingTicket ticket = new ParkingTicket();
         carTicketMapper.put(ticket, car);
-        currentCarCount++;
-
         return ticket;
     }
 
     Car removeCar(ParkingTicket ticket) {
         Car returnCar = carTicketMapper.remove(ticket);
-        if (returnCar != null) {
-            currentCarCount--;
-        }
         return returnCar;
     }
 
     int getCurrentParkingCapacity() {
-        return parkingCapacity - currentCarCount;
+        return parkingCapacity - carTicketMapper.size();
     }
 
     int getMaxParkingCapacity() {
