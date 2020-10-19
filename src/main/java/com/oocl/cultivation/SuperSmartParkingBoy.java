@@ -20,7 +20,7 @@ public class SuperSmartParkingBoy extends ParkingBoy {
         ParkingLot targetParkingLot = null;
         float largestParkingRatio = 0;
         for (ParkingLot parkingLot : groupParkingLots) {
-            float parkingRatio = (float) parkingLot.getCurrentParkingCapacity() / parkingLot.getMaxParkingCapacity();
+            float parkingRatio = parkingLot.getCurrentParkingRatio();
             if (parkingRatio > largestParkingRatio) {
                 targetParkingLot = parkingLot;
                 largestParkingRatio = parkingRatio;
