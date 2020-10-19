@@ -17,18 +17,16 @@ public class ParkingBoy {
         this.groupParkingLots = groupParkingLots;
     }
 
-    // TODO: refactor the parkingLot searching to another method
-    // TODO: and then have the subclasses override this function instead
-    // TODO: delete comment
     public ParkingTicket park(Car car) {
-        // TODO try to refactor to lambda function later
-        for (ParkingLot parkingLot : groupParkingLots) {
-            if (!parkingLot.isFullCapacity()) {
-                return parkingLot.addCar(car);
-            }
+        ParkingLot targetParkingLot = findAvailableParkingLot();
+        if (targetParkingLot != null) {
+            return targetParkingLot.addCar(car);
         }
-
         throw new ParkingException(ParkingExceptionMessage.FULL_PARKING_CAPACITY_MESSAGE);
+    }
+
+    private ParkingLot findAvailableParkingLot() {
+        return groupParkingLots.stream().filter(parkingLot -> !parkingLot.isFullCapacity()).findFirst().orElse(null);
     }
 
     // TODO: refactor the parkingLot searching to another method
