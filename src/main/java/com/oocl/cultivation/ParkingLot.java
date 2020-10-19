@@ -1,19 +1,19 @@
 package com.oocl.cultivation;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ParkingLot {
-    private int parkingCapacity;
+    private int maxParkingCapacity;
     private static final int DEFAULT_PARKING_CAPACITY = 10;
-    private final Map<ParkingTicket, Car> carTicketMapper = new HashMap<>();
+    private final Map<ParkingTicket, Car> carTicketMapper = new ConcurrentHashMap<>();
 
     public ParkingLot() {
-        this.parkingCapacity = DEFAULT_PARKING_CAPACITY;
+        this.maxParkingCapacity = DEFAULT_PARKING_CAPACITY;
     }
 
-    public ParkingLot(int parkingCapacity) {
-        this.parkingCapacity = parkingCapacity;
+    public ParkingLot(int maxParkingCapacity) {
+        this.maxParkingCapacity = maxParkingCapacity;
     }
 
     public boolean checkIfCarInParkingLotByTicket(ParkingTicket ticket) {
@@ -21,7 +21,7 @@ public class ParkingLot {
     }
 
     public boolean isFullCapacity() {
-        return carTicketMapper.size() >= parkingCapacity;
+        return carTicketMapper.size() >= maxParkingCapacity;
     }
 
     ParkingTicket addCar(Car car) {
@@ -31,15 +31,14 @@ public class ParkingLot {
     }
 
     Car removeCar(ParkingTicket ticket) {
-        Car returnCar = carTicketMapper.remove(ticket);
-        return returnCar;
+        return carTicketMapper.remove(ticket);
     }
 
     int getCurrentParkingCapacity() {
-        return parkingCapacity - carTicketMapper.size();
+        return maxParkingCapacity - carTicketMapper.size();
     }
 
     int getMaxParkingCapacity() {
-        return parkingCapacity;
+        return maxParkingCapacity;
     }
 }
