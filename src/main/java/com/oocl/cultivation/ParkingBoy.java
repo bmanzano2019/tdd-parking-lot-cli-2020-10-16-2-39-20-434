@@ -25,10 +25,6 @@ public class ParkingBoy {
         throw new ParkingException(ParkingExceptionMessage.FULL_PARKING_CAPACITY_MESSAGE);
     }
 
-    private ParkingLot findAvailableParkingLot() {
-        return groupParkingLots.stream().filter(parkingLot -> !parkingLot.isFullCapacity()).findFirst().orElse(null);
-    }
-
     // TODO: refactor the parkingLot searching to another method
     // TODO: and then have the subclasses override this function instead
     public Car fetchCar(ParkingTicket ticket) {
@@ -47,5 +43,8 @@ public class ParkingBoy {
         throw new ParkingException(ParkingExceptionMessage.UNRECOGNIZED_PARKING_TICKET_MESSAGE);
     }
 
+    ParkingLot findAvailableParkingLot() {
+        return groupParkingLots.stream().filter(parkingLot -> !parkingLot.isFullCapacity()).findFirst().orElse(null);
+    }
 
 }
