@@ -1,6 +1,7 @@
 package com.oocl.cultivation;
 
-import com.oocl.cultivation.exception.UnlistedParkingBoyException;
+import com.oocl.cultivation.exception.ParkingException;
+import com.oocl.cultivation.utils.ParkingExceptionMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,13 +27,13 @@ public class ParkingLotServiceManager extends ParkingBoy {
         if (parkerList.contains(parkingBoy)) {
             return parkingBoy.park(car);
         }
-        throw new UnlistedParkingBoyException();
+        throw new ParkingException(ParkingExceptionMessage.UNLISTED_PARKING_BOY_MESSAGE);
     }
 
     public Car fetchCar(ParkingBoy parkingBoy, ParkingTicket ticket) {
         if (parkerList.contains(parkingBoy)) {
             return parkingBoy.fetchCar(ticket);
         }
-        throw new UnlistedParkingBoyException();
+        throw new ParkingException(ParkingExceptionMessage.UNLISTED_PARKING_BOY_MESSAGE);
     }
 }

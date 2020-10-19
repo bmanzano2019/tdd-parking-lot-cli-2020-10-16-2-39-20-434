@@ -1,7 +1,6 @@
 package com.oocl.cultivation;
 
 import com.oocl.cultivation.exception.ParkingException;
-import com.oocl.cultivation.exception.UnlistedParkingBoyException;
 import com.oocl.cultivation.exception.UnrecognizedParkingTicketException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -300,7 +299,7 @@ class ParkingLotServiceManagerTest {
         // when
         // then
         Exception thrownException = Assertions
-                .assertThrows(UnlistedParkingBoyException.class,
+                .assertThrows(ParkingException.class,
                         () -> parkingManager.park(parkingBoy, new Car()));
         Assertions.assertEquals(TEST_UNLISTED_PARKING_BOY_MESSAGE, thrownException.getMessage());
         Assertions.assertEquals(TEST_DEFAULT_PARKING_CAPACITY, parkingLot.getCurrentParkingCapacity());
@@ -318,7 +317,7 @@ class ParkingLotServiceManagerTest {
         // when
         // then
         Exception thrownException = Assertions
-                .assertThrows(UnlistedParkingBoyException.class,
+                .assertThrows(ParkingException.class,
                         () -> parkingManager.fetchCar(parkingBoy, ticket));
         Assertions.assertEquals(TEST_UNLISTED_PARKING_BOY_MESSAGE, thrownException.getMessage());
         Assertions.assertTrue(parkingLot.checkIfCarInParkingLotByTicket(ticket));
