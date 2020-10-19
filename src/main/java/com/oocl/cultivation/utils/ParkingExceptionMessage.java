@@ -1,7 +1,8 @@
 package com.oocl.cultivation.utils;
 
 public enum ParkingExceptionMessage {
-    FULL_PARKING_CAPACITY_MESSAGE("Not enough position.");
+    FULL_PARKING_CAPACITY_MESSAGE("Not enough position."),
+    NULL_PARKING_TICKET_MESSAGE("Please provide your parking ticket.");
 
     private String errorMessage;
 

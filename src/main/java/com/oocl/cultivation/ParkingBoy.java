@@ -1,12 +1,9 @@
 package com.oocl.cultivation;
 
-import com.oocl.cultivation.exception.FullParkingCapacityException;
-import com.oocl.cultivation.exception.NullParkingTicketException;
 import com.oocl.cultivation.exception.ParkingException;
 import com.oocl.cultivation.exception.UnrecognizedParkingTicketException;
 import com.oocl.cultivation.utils.ParkingExceptionMessage;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -42,7 +39,7 @@ public class ParkingBoy {
         Car fetchedCar;
 
         if (ticket == null) {
-            throw new NullParkingTicketException();
+            throw new ParkingException(ParkingExceptionMessage.NULL_PARKING_TICKET_MESSAGE);
         }
 
         for (ParkingLot parkingLot : groupParkingLots) {
