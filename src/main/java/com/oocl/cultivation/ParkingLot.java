@@ -41,8 +41,4 @@ public class ParkingLot {
     float getCurrentParkingRatio() {
         return (float) (maxParkingCapacity - carTicketMapper.size()) / maxParkingCapacity;
     }
-
-    int getMaxParkingCapacity() {
-        return maxParkingCapacity;
-    }
 }

@@ -1,8 +1,5 @@
 package com.oocl.cultivation;
 
-import com.oocl.cultivation.exception.ParkingException;
-import com.oocl.cultivation.utils.ParkingExceptionMessage;
-
 import java.util.Comparator;
 import java.util.List;
 
