@@ -13,7 +13,7 @@ public class SuperSmartParkingBoy extends ParkingBoy {
     }
 
     @Override
-    ParkingLot findAvailableParkingLot() {
+    public ParkingLot findAvailableParkingLot() {
         return groupParkingLots.stream()
                 .filter(parkingLot -> !parkingLot.isFullCapacity())
                 .max(Comparator.comparing(ParkingLot::getCurrentParkingRatio))

@@ -6,7 +6,7 @@ import com.oocl.cultivation.utils.ParkingExceptionMessage;
 import java.util.Arrays;
 import java.util.List;
 
-public class ParkingBoy {
+public class ParkingBoy implements Parkable {
     List<ParkingLot> groupParkingLots;
 
     public ParkingBoy(ParkingLot parkingLot) {
@@ -17,6 +17,7 @@ public class ParkingBoy {
         this.groupParkingLots = groupParkingLots;
     }
 
+    @Override
     public ParkingTicket park(Car car) {
         ParkingLot targetParkingLot = findAvailableParkingLot();
         if (targetParkingLot != null) {
@@ -25,6 +26,7 @@ public class ParkingBoy {
         throw new ParkingException(ParkingExceptionMessage.FULL_PARKING_CAPACITY_MESSAGE);
     }
 
+    @Override
     public Car fetchCar(ParkingTicket ticket) {
         if (ticket == null) {
             throw new ParkingException(ParkingExceptionMessage.NULL_PARKING_TICKET_MESSAGE);
@@ -36,14 +38,16 @@ public class ParkingBoy {
         throw new ParkingException(ParkingExceptionMessage.UNRECOGNIZED_PARKING_TICKET_MESSAGE);
     }
 
-    ParkingLot findAvailableParkingLot() {
+    @Override
+    public ParkingLot findAvailableParkingLot() {
         return groupParkingLots.stream()
                 .filter(parkingLot -> !parkingLot.isFullCapacity())
                 .findFirst()
                 .orElse(null);
     }
 
-    ParkingLot findParkingLotWhereCarIsParked(ParkingTicket ticket) {
+    @Override
+    public ParkingLot findParkingLotWhereCarIsParked(ParkingTicket ticket) {
         return groupParkingLots.stream()
                 .filter(parkingLot -> parkingLot.checkIfCarInParkingLotByTicket(ticket))
                 .findFirst()
