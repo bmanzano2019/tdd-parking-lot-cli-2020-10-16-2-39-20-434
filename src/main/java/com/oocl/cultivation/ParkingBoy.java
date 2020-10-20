@@ -43,7 +43,7 @@ public class ParkingBoy {
                 .orElse(null);
     }
 
-    private ParkingLot findParkingLotWhereCarIsParked(ParkingTicket ticket) {
+    ParkingLot findParkingLotWhereCarIsParked(ParkingTicket ticket) {
         return groupParkingLots.stream()
                 .filter(parkingLot -> parkingLot.checkIfCarInParkingLotByTicket(ticket))
                 .findFirst()
