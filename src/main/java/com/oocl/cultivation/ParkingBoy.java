@@ -36,16 +36,16 @@ public class ParkingBoy {
         throw new ParkingException(ParkingExceptionMessage.UNRECOGNIZED_PARKING_TICKET_MESSAGE);
     }
 
-    private ParkingLot findParkingLotWhereCarIsParked(ParkingTicket ticket) {
+    ParkingLot findAvailableParkingLot() {
         return groupParkingLots.stream()
-                .filter(parkingLot -> parkingLot.checkIfCarInParkingLotByTicket(ticket))
+                .filter(parkingLot -> !parkingLot.isFullCapacity())
                 .findFirst()
                 .orElse(null);
     }
 
-    ParkingLot findAvailableParkingLot() {
+    private ParkingLot findParkingLotWhereCarIsParked(ParkingTicket ticket) {
         return groupParkingLots.stream()
-                .filter(parkingLot -> !parkingLot.isFullCapacity())
+                .filter(parkingLot -> parkingLot.checkIfCarInParkingLotByTicket(ticket))
                 .findFirst()
                 .orElse(null);
     }
