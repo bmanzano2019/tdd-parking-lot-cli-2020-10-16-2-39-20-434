@@ -121,10 +121,7 @@ class ParkingLotServiceManagerTest {
         // given
         ParkingLot firstParkingLot = new ParkingLot(1);
         ParkingLot secondParkingLot = new ParkingLot();
-        List<ParkingLot> groupParkingLots = new ArrayList<>(0);
-        groupParkingLots.add(firstParkingLot);
-        groupParkingLots.add(secondParkingLot);
-        ParkingLotServiceManager parkingManager = new ParkingLotServiceManager(groupParkingLots);
+        ParkingLotServiceManager parkingManager = new ParkingLotServiceManager(firstParkingLot, secondParkingLot);
 
         Car firstCar = new Car();
         Car secondCar = new Car();
@@ -146,12 +143,7 @@ class ParkingLotServiceManagerTest {
         ParkingLot secondParkingLot = new ParkingLot(1);
         ParkingLot thirdParkingLot = new ParkingLot();
         ParkingLot fourthParkingLot = new ParkingLot();
-        List<ParkingLot> groupParkingLots = new ArrayList<>(0);
-        groupParkingLots.add(firstParkingLot);
-        groupParkingLots.add(secondParkingLot);
-        groupParkingLots.add(thirdParkingLot);
-        groupParkingLots.add(fourthParkingLot);
-        ParkingLotServiceManager parkingManager = new ParkingLotServiceManager(groupParkingLots);
+        ParkingLotServiceManager parkingManager = new ParkingLotServiceManager(firstParkingLot, secondParkingLot, thirdParkingLot, fourthParkingLot);
 
         Car firstCar = new Car();
         Car secondCar = new Car();

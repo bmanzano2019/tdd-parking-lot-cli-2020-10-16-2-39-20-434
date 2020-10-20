@@ -9,12 +9,7 @@ import java.util.List;
 public class ParkingLotServiceManager extends ParkingBoy {
     private List<ParkingBoy> parkerList;
 
-    public ParkingLotServiceManager(ParkingLot parkingLot) {
-        super(parkingLot);
-        parkerList = new ArrayList<>();
-    }
-
-    public ParkingLotServiceManager(List<ParkingLot> groupParkingLots) {
+    public ParkingLotServiceManager(ParkingLot... groupParkingLots) {
         super(groupParkingLots);
         parkerList = new ArrayList<>();
     }
