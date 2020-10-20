@@ -119,10 +119,7 @@ class ParkingBoyTest {
         // given
         ParkingLot firstParkingLot = new ParkingLot(1);
         ParkingLot secondParkingLot = new ParkingLot();
-        List<ParkingLot> groupParkingLots = new ArrayList<>(0);
-        groupParkingLots.add(firstParkingLot);
-        groupParkingLots.add(secondParkingLot);
-        ParkingBoy parkingBoy = new ParkingBoy(groupParkingLots);
+        ParkingBoy parkingBoy = new ParkingBoy(firstParkingLot, secondParkingLot);
 
         Car firstCar = new Car();
         Car secondCar = new Car();
@@ -144,12 +141,7 @@ class ParkingBoyTest {
         ParkingLot secondParkingLot = new ParkingLot(1);
         ParkingLot thirdParkingLot = new ParkingLot();
         ParkingLot fourthParkingLot = new ParkingLot();
-        List<ParkingLot> groupParkingLots = new ArrayList<>(0);
-        groupParkingLots.add(firstParkingLot);
-        groupParkingLots.add(secondParkingLot);
-        groupParkingLots.add(thirdParkingLot);
-        groupParkingLots.add(fourthParkingLot);
-        ParkingBoy parkingBoy = new ParkingBoy(groupParkingLots);
+        ParkingBoy parkingBoy = new ParkingBoy(firstParkingLot, secondParkingLot, thirdParkingLot, fourthParkingLot);
 
         Car firstCar = new Car();
         Car secondCar = new Car();

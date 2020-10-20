@@ -17,6 +17,10 @@ public class ParkingBoy implements Parkable {
         this.groupParkingLots = groupParkingLots;
     }
 
+    public ParkingBoy(ParkingLot... groupParkingLots) {
+        this.groupParkingLots = Arrays.asList(groupParkingLots);
+    }
+
     @Override
     public ParkingTicket park(Car car) {
         ParkingLot targetParkingLot = findAvailableParkingLot();
