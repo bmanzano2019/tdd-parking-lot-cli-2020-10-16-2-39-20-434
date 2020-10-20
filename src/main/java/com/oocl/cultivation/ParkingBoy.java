@@ -9,14 +9,6 @@ import java.util.List;
 public class ParkingBoy implements Parkable {
     List<ParkingLot> groupParkingLots;
 
-    public ParkingBoy(ParkingLot parkingLot) {
-        groupParkingLots = Arrays.asList(parkingLot);
-    }
-
-    public ParkingBoy(List<ParkingLot> groupParkingLots) {
-        this.groupParkingLots = groupParkingLots;
-    }
-
     public ParkingBoy(ParkingLot... groupParkingLots) {
         this.groupParkingLots = Arrays.asList(groupParkingLots);
     }

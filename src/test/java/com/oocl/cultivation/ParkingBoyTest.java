@@ -4,9 +4,6 @@ import com.oocl.cultivation.exception.ParkingException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 class ParkingBoyTest {
     private static final String TEST_UNRECOGNIZED_PARKING_TICKET_MESSAGE = "Unrecognized Parking Ticket.";
     private static final String TEST_NULL_PARKING_TICKET_MESSAGE = "Please provide your parking ticket.";
