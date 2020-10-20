@@ -17,10 +17,7 @@ class SuperSmartParkingBoyTest {
         // given
         ParkingLot firstParkingLot = new ParkingLot(2);
         ParkingLot secondParkingLot = new ParkingLot(1);
-        List<ParkingLot> groupParkingLots = new ArrayList<>(0);
-        groupParkingLots.add(firstParkingLot);
-        groupParkingLots.add(secondParkingLot);
-        SuperSmartParkingBoy superParkingBoy = new SuperSmartParkingBoy(groupParkingLots);
+        SuperSmartParkingBoy superParkingBoy = new SuperSmartParkingBoy(firstParkingLot, secondParkingLot);
         Car firstCar = new Car();
         Car secondCar = new Car();
         ParkingTicket firstTicket = superParkingBoy.park(firstCar);
@@ -141,10 +138,7 @@ class SuperSmartParkingBoyTest {
         // given
         ParkingLot firstParkingLot = new ParkingLot(1);
         ParkingLot secondParkingLot = new ParkingLot();
-        List<ParkingLot> groupParkingLots = new ArrayList<>(0);
-        groupParkingLots.add(firstParkingLot);
-        groupParkingLots.add(secondParkingLot);
-        SuperSmartParkingBoy superParkingBoy = new SuperSmartParkingBoy(groupParkingLots);
+        SuperSmartParkingBoy superParkingBoy = new SuperSmartParkingBoy(firstParkingLot, secondParkingLot);
 
         Car firstCar = new Car();
         Car secondCar = new Car();
@@ -166,12 +160,7 @@ class SuperSmartParkingBoyTest {
         ParkingLot secondParkingLot = new ParkingLot(2);
         ParkingLot thirdParkingLot = new ParkingLot(3);
         ParkingLot fourthParkingLot = new ParkingLot(4);
-        List<ParkingLot> groupParkingLots = new ArrayList<>(0);
-        groupParkingLots.add(firstParkingLot);
-        groupParkingLots.add(secondParkingLot);
-        groupParkingLots.add(thirdParkingLot);
-        groupParkingLots.add(fourthParkingLot);
-        SuperSmartParkingBoy superParkingBoy = new SuperSmartParkingBoy(groupParkingLots);
+        SuperSmartParkingBoy superParkingBoy = new SuperSmartParkingBoy(firstParkingLot, secondParkingLot, thirdParkingLot, fourthParkingLot);
 
         Car firstCar = new Car();
         Car secondCar = new Car();
