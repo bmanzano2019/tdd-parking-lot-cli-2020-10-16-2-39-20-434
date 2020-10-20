@@ -35,17 +35,17 @@ public class ParkingBoy implements Parkable {
     }
 
     @Override
-    public ParkingLot findAvailableParkingLot() {
+    public ParkingLot findParkingLotWhereCarIsParked(ParkingTicket ticket) {
         return groupParkingLots.stream()
-                .filter(parkingLot -> !parkingLot.isFullCapacity())
+                .filter(parkingLot -> parkingLot.checkIfCarInParkingLotByTicket(ticket))
                 .findFirst()
                 .orElse(null);
     }
 
     @Override
-    public ParkingLot findParkingLotWhereCarIsParked(ParkingTicket ticket) {
+    public ParkingLot findAvailableParkingLot() {
         return groupParkingLots.stream()
-                .filter(parkingLot -> parkingLot.checkIfCarInParkingLotByTicket(ticket))
+                .filter(parkingLot -> !parkingLot.isFullCapacity())
                 .findFirst()
                 .orElse(null);
     }
