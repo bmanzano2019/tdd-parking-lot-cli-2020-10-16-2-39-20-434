@@ -17,10 +17,7 @@ class SmartParkingBoyTest {
         // given
         ParkingLot firstParkingLot = new ParkingLot();
         ParkingLot secondParkingLot = new ParkingLot(20);
-        List<ParkingLot> groupParkingLots = new ArrayList<>(0);
-        groupParkingLots.add(firstParkingLot);
-        groupParkingLots.add(secondParkingLot);
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(groupParkingLots);
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(firstParkingLot, secondParkingLot);
         Car car = new Car();
 
         // when
@@ -138,10 +135,7 @@ class SmartParkingBoyTest {
         // given
         ParkingLot firstParkingLot = new ParkingLot(1);
         ParkingLot secondParkingLot = new ParkingLot();
-        List<ParkingLot> groupParkingLots = new ArrayList<>(0);
-        groupParkingLots.add(firstParkingLot);
-        groupParkingLots.add(secondParkingLot);
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(groupParkingLots);
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(firstParkingLot, secondParkingLot);
 
         Car firstCar = new Car();
         Car secondCar = new Car();
@@ -163,12 +157,7 @@ class SmartParkingBoyTest {
         ParkingLot secondParkingLot = new ParkingLot(1);
         ParkingLot thirdParkingLot = new ParkingLot();
         ParkingLot fourthParkingLot = new ParkingLot();
-        List<ParkingLot> groupParkingLots = new ArrayList<>(0);
-        groupParkingLots.add(firstParkingLot);
-        groupParkingLots.add(secondParkingLot);
-        groupParkingLots.add(thirdParkingLot);
-        groupParkingLots.add(fourthParkingLot);
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(groupParkingLots);
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(firstParkingLot, secondParkingLot, thirdParkingLot, fourthParkingLot);
 
         Car firstCar = new Car();
         Car secondCar = new Car();
