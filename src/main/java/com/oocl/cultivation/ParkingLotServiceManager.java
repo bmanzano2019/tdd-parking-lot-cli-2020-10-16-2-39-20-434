@@ -3,32 +3,33 @@ package com.oocl.cultivation;
 import com.oocl.cultivation.exception.ParkingException;
 import com.oocl.cultivation.utils.ParkingExceptionMessage;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class ParkingLotServiceManager extends ParkingBoy {
-    private List<ParkingBoy> parkerList;
+public class ParkingLotServiceManager {
+    private List<Parkable> parkableList;
 
-    public ParkingLotServiceManager(ParkingLot... groupParkingLots) {
-        super(groupParkingLots);
-        parkerList = new ArrayList<>();
+    public ParkingLotServiceManager(Parkable... parkables) {
+        parkableList = Arrays.asList(parkables);
     }
 
-    public void addBoyToParkerList(ParkingBoy parkingBoy) {
-        parkerList.add(parkingBoy);
+    public ParkingTicket park(Car car) {
+        return parkableList.stream()
+                .filter(parkable -> parkable.findAvailableParkingLot() != null)
+                .findFirst()
+                .orElseThrow(() -> new ParkingException(ParkingExceptionMessage.FULL_PARKING_CAPACITY_MESSAGE))
+                .park(car);
     }
 
-    public ParkingTicket park(ParkingBoy parkingBoy, Car car) {
-        if (parkerList.contains(parkingBoy)) {
-            return parkingBoy.park(car);
+    public Car fetchCar(ParkingTicket ticket) {
+        if (ticket == null) {
+            throw new ParkingException(ParkingExceptionMessage.NULL_PARKING_TICKET_MESSAGE);
         }
-        throw new ParkingException(ParkingExceptionMessage.UNLISTED_PARKING_BOY_MESSAGE);
-    }
 
-    public Car fetchCar(ParkingBoy parkingBoy, ParkingTicket ticket) {
-        if (parkerList.contains(parkingBoy)) {
-            return parkingBoy.fetchCar(ticket);
-        }
-        throw new ParkingException(ParkingExceptionMessage.UNLISTED_PARKING_BOY_MESSAGE);
+        return parkableList.stream()
+                .filter(parkable -> parkable.findParkingLotWhereCarIsParked(ticket) != null)
+                .findFirst()
+                .orElseThrow(() -> new ParkingException(ParkingExceptionMessage.UNRECOGNIZED_PARKING_TICKET_MESSAGE))
+                .fetchCar(ticket);
     }
 }
